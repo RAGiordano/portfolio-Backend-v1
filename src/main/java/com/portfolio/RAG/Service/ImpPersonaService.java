@@ -1,36 +1,45 @@
 package com.portfolio.RAG.Service;
 
 import com.portfolio.RAG.Entity.Persona;
-import com.portfolio.RAG.Interface.IPersonaService;
 import com.portfolio.RAG.Repository.IPersonaRepository;
 import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ImpPersonaService implements IPersonaService{
-    @Autowired IPersonaRepository iPersonaRepository;
+@Transactional
+public class ImpPersonaService{
     
-    @Override
-    public List<Persona> getPersona() {
-        List<Persona> persona = iPersonaRepository.findAll();
-        return persona;
+    @Autowired
+    IPersonaRepository iPersonaRepository;
+    
+    public List<Persona> list(){
+        return iPersonaRepository.findAll();
     }
-
-    @Override
-    public void savePersona(Persona persona) {
+    
+    public Optional<Persona>getOne(Long id){
+        return iPersonaRepository.findById(id);
+    }
+    
+    public Optional<Persona> getByDni(String dni){
+        return iPersonaRepository.findByDni(dni);
+    }
+    
+    public void save(Persona persona){
         iPersonaRepository.save(persona);
     }
-
-    @Override
-    public void deletePersona(Long id) {
+    
+    public void delete(Long id){
         iPersonaRepository.deleteById(id);
     }
-
-    @Override
-    public Persona findPersona(Long id) {
-        Persona persona = iPersonaRepository.findById(id).orElse(null);
-        return persona;
+    
+    public boolean existById(Long id){
+        return iPersonaRepository.existsById(id);
     }
     
+    public boolean existsByDni(String dni){
+        return iPersonaRepository.existsByDni(dni);
+    }
 }

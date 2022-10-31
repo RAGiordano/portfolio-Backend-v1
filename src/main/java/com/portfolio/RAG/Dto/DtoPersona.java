@@ -1,21 +1,15 @@
-package com.portfolio.RAG.Entity;
+package com.portfolio.RAG.Dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 
-@Entity
-public class Persona {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class DtoPersona {
+    
+    @NotBlank
     private String dni;
-    @NotNull
+    @NotBlank
     private String nombre;
-    @NotNull
+    @NotBlank
     private String apellido;
     //private String domicilio;
     private String fechaNac;
@@ -31,19 +25,13 @@ public class Persona {
     private String urlFoto;
     private String urlBanner;
 
-    /*public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }*/
-
+    
     //Constructores
-    public Persona() {
+
+    public DtoPersona() {
     }
 
-    public Persona(String dni, String nombre, String apellido, String fechaNac, String lugarNac, String telefono, String presentacion, String sobreMi, String email, String urlFoto, String urlBanner) {
+    public DtoPersona(String dni, String nombre, String apellido, String fechaNac, String lugarNac, String telefono, String presentacion, String sobreMi, String email, String urlFoto, String urlBanner) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -57,17 +45,7 @@ public class Persona {
         this.urlBanner = urlBanner;
     }
 
-
-
     //Getters & Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getDni() {
         return dni;
@@ -157,6 +135,5 @@ public class Persona {
         this.urlBanner = urlBanner;
     }
 
- 
     
 }
